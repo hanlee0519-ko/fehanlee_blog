@@ -11,7 +11,7 @@ export default function Navigation() {
           <Link href="/about">About</Link>
         </li>
         <li className="flex-none mr-2">
-          <Link href="/blog">Blog</Link>
+          <Link href="/about/projects">Projects</Link>
         </li>
         <li className="flex-none ml-auto mr-2">
           <Link href="/login">Login</Link>
