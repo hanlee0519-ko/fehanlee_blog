@@ -31,7 +31,7 @@ export default function RootLayout({
         <header>
           <Navigation />
         </header>
-        <main className="max-w-screen-sm">{children}</main>
+        <main>{children}</main>
       </body>
     </html>
   );

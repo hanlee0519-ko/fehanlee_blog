@@ -54,7 +54,7 @@ function ProjectLoading() {
 export default function ProjectsPage() {
   return (
     <>
-      <article className="border-4 border-blue-500 m-4 p-10">
+      <article className="border-4 border-blue-500">
         <h1 className="mb-4 text-2xl">Page: Projects</h1>
         <Suspense fallback={<ProjectLoading />}>
           <ProjectList />
