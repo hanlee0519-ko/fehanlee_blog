@@ -1,7 +1,8 @@
+import Card from "@/components/card";
 import { RepoData } from "@/types/repo";
 import { Suspense } from "react";
 
-async function getProjects() {
+async function getRepos() {
   try {
     const response = await fetch("http://localhost:3001/repos");
     if (!response.ok) throw new Error();
@@ -15,9 +16,9 @@ async function getProjects() {
 }
 
 async function ProjectList() {
-  const projects: RepoData[] = await getProjects();
+  const repos: RepoData[] = await getRepos();
 
-  if (!projects.length) {
+  if (!repos.length) {
     return (
       <p className="bg-red-500 text-2xl text-white font-bold mt-10 p-5">
         {"서버 Error 발생"}
@@ -26,13 +27,17 @@ async function ProjectList() {
   }
 
   return (
-    <ul>
-      {projects.map((project) => (
-        <li key={project.id} className="p-4">
-          <h3>{project.title}</h3>
-          <h4 className="bg-yellow-500 font-bold text-white">
-            {project.stargazers_count}
-          </h4>
+    <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
+      {repos.map((repo) => (
+        <li key={repo.id} className="mb-4">
+          <Card className="font-mono h-full">
+            <header className="flex justify-between items-center mb-4">
+              <h3 className="font-semibold">{repo.title}</h3>
+              <span>⭐️{repo.stargazers_count}</span>
+            </header>
+
+            <p>{repo.description}</p>
+          </Card>
         </li>
       ))}
     </ul>
@@ -54,7 +59,7 @@ function ProjectLoading() {
 export default function ProjectsPage() {
   return (
     <>
-      <article className="border-4 border-blue-500">
+      <article>
         <h1 className="mb-4 text-2xl">Page: Projects</h1>
         <Suspense fallback={<ProjectLoading />}>
           <ProjectList />
