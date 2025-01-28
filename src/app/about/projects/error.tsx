@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { startTransition } from "react";
+import { startTransition, useEffect } from "react";
 
 export default function Error({
   error,
@@ -12,6 +12,10 @@ export default function Error({
 }) {
   const router = useRouter();
 
+  useEffect(() => {
+    console.error(error.message);
+  }, [error]);
+
   return (
     <>
       <article>
@@ -19,8 +23,8 @@ export default function Error({
         <button
           className="p-4 mt-4 text-white bg-orange-500"
           onClick={() => {
-            startTransition(() => {
-              router.refresh();
+            startTransition(async () => {
+              await router.refresh();
               reset();
             });
           }}
