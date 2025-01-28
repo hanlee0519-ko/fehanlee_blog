@@ -3,28 +3,15 @@ import { RepoData } from "@/types/repo";
 import { Suspense } from "react";
 
 async function getRepos() {
-  try {
-    const response = await fetch("http://localhost:3001/repos");
-    if (!response.ok) throw new Error();
+  const response = await fetch("http://localhost:3001/repos");
+  if (!response.ok) throw new Error();
 
-    const data = await response.json();
-    return data;
-  } catch (e) {
-    console.error(e);
-    return [];
-  }
+  const data = await response.json();
+  return data;
 }
 
 async function ProjectList() {
   const repos: RepoData[] = await getRepos();
-
-  if (!repos.length) {
-    return (
-      <p className="bg-red-500 text-2xl text-white font-bold mt-10 p-5">
-        {"서버 Error 발생"}
-      </p>
-    );
-  }
 
   return (
     <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
