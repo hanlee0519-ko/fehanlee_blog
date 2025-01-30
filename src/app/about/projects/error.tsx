@@ -23,8 +23,8 @@ export default function Error({
         <button
           className="p-4 mt-4 text-white bg-orange-500"
           onClick={() => {
-            startTransition(async () => {
-              await router.refresh();
+            startTransition(() => {
+              router.refresh();
               reset();
             });
           }}
