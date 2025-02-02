@@ -3,15 +3,24 @@ import { RepoData } from "@/types/repo";
 import { Suspense } from "react";
 
 async function getRepos() {
-  const response = await fetch("http://localhost:3001/repos");
-  if (!response.ok) throw new Error();
+  try {
+    const response = await fetch("http://localhost:3001/repos");
+    if (!response.ok) throw new Error();
 
-  const data = await response.json();
-  return data;
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
 }
 
 async function ProjectList() {
   const repos: RepoData[] = await getRepos();
+
+  if (repos.length === 0) {
+    return <h1>{"Error 발생"}</h1>;
+  }
 
   return (
     <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
