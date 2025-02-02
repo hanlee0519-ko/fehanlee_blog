@@ -15,6 +15,9 @@ export default function Navigation() {
           <Link href="/about/projects">Projects</Link>
         </li>
         <li className={styles.link}>
+          <Link href="/photos">Photos</Link>
+        </li>
+        <li className={styles.link}>
           <Link href="/login">Login</Link>
         </li>
       </ul>
