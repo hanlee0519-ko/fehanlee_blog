@@ -18,6 +18,9 @@ export default function PhotosPage() {
             src={dog1}
             alt="Photo of my dog"
             sizes="(max-width:768px) 100vw, 50vw"
+            priority={true}
+            quality={50}
+            placeholder="blur"
           />
         </li>
         <li className="relative h-60 overflow-hidden">
@@ -27,6 +30,9 @@ export default function PhotosPage() {
             src={dog2}
             alt="Photo of my dog"
             sizes="(max-width:768px) 100vw, 50vw"
+            priority={true}
+            quality={50}
+            placeholder="blur"
           />
         </li>
         <li className="relative h-60 overflow-hidden">
@@ -36,6 +42,8 @@ export default function PhotosPage() {
             src={dog3}
             alt="Photo of my dog"
             sizes="(max-width:768px) 100vw, 50vw"
+            quality={50}
+            placeholder="blur"
           />
         </li>
         <li className="relative h-60 overflow-hidden">
@@ -45,6 +53,8 @@ export default function PhotosPage() {
             src={dog4}
             alt="Photo of my dog"
             sizes="(max-width:768px) 100vw, 50vw"
+            quality={50}
+            placeholder="blur"
           />
         </li>
       </ul>
