@@ -10,13 +10,14 @@ export default function PhotosPage() {
     <article>
       <h1 className="text-2xl mb-8 font-semibold">My Photos</h1>
 
-      <ul className="grid grid-cols-2 gap-4">
+      <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <li className="relative h-60 overflow-hidden">
           <Image
             fill
             className="object-cover w-full h-full"
             src={dog1}
             alt="Photo of my dog"
+            sizes="(max-width:768px) 100vw, 50vw"
           />
         </li>
         <li className="relative h-60 overflow-hidden">
@@ -25,6 +26,7 @@ export default function PhotosPage() {
             className="object-cover w-full h-full"
             src={dog2}
             alt="Photo of my dog"
+            sizes="(max-width:768px) 100vw, 50vw"
           />
         </li>
         <li className="relative h-60 overflow-hidden">
@@ -33,6 +35,7 @@ export default function PhotosPage() {
             className="object-cover w-full h-full"
             src={dog3}
             alt="Photo of my dog"
+            sizes="(max-width:768px) 100vw, 50vw"
           />
         </li>
         <li className="relative h-60 overflow-hidden">
@@ -41,6 +44,7 @@ export default function PhotosPage() {
             className="object-cover w-full h-full"
             src={dog4}
             alt="Photo of my dog"
+            sizes="(max-width:768px) 100vw, 50vw"
           />
         </li>
       </ul>
