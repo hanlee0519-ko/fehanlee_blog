@@ -11,29 +11,33 @@ export default function PhotosPage() {
       <h1 className="text-2xl mb-8 font-semibold">My Photos</h1>
 
       <ul className="grid grid-cols-2 gap-4">
-        <li className="h-60 overflow-hidden">
+        <li className="relative h-60 overflow-hidden">
           <Image
+            fill
             className="object-cover w-full h-full"
             src={dog1}
             alt="Photo of my dog"
           />
         </li>
-        <li className="h-60 overflow-hidden">
+        <li className="relative h-60 overflow-hidden">
           <Image
+            fill
             className="object-cover w-full h-full"
             src={dog2}
             alt="Photo of my dog"
           />
         </li>
-        <li className="h-60 overflow-hidden">
+        <li className="relative h-60 overflow-hidden">
           <Image
+            fill
             className="object-cover w-full h-full"
             src={dog3}
             alt="Photo of my dog"
           />
         </li>
-        <li className="h-60 overflow-hidden">
+        <li className="relative h-60 overflow-hidden">
           <Image
+            fill
             className="object-cover w-full h-full"
             src={dog4}
             alt="Photo of my dog"
