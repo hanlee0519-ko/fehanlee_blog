@@ -10,7 +10,10 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "Why to Know Blog",
+  title: {
+    template: "%s | HAN Blog",
+    default: "HAN Blog",
+  },
   description: "Kyung Han Lee Portfolio",
 };
 
