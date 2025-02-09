@@ -1,5 +1,7 @@
 import type { Metadata, ResolvingMetadata } from "next";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import fs from "fs";
+import path from "path";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -29,9 +31,14 @@ export default async function BlogPage({
   params: Promise<{ slug: string }>;
 }) {
   const slug = (await params).slug;
+
+  const markdown = fs.readFileSync(
+    path.join(process.cwd(), "src", "content", `${slug}.mdx`)
+  );
+
   return (
     <article className="prose dark:prose-invert">
-      <MDXRemote source={"# Hello Word"} />
+      <MDXRemote source={markdown} />
     </article>
   );
 }
