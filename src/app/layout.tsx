@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     template: "%s | HAN Blog",
     default: "HAN Blog",
   },
-  description: "Kyung Han Lee Portfolio",
+  description: "HAN's Portfolio",
 };
 
 export default function RootLayout({
