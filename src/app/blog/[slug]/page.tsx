@@ -1,4 +1,5 @@
 import type { Metadata, ResolvingMetadata } from "next";
+import { MDXRemote } from "next-mdx-remote/rsc";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -28,5 +29,9 @@ export default async function BlogPage({
   params: Promise<{ slug: string }>;
 }) {
   const slug = (await params).slug;
-  return <>Hello! {slug}</>;
+  return (
+    <article className="prose dark:prose-invert">
+      <MDXRemote source={"# Hello Word"} />
+    </article>
+  );
 }
