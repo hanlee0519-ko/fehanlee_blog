@@ -1,28 +1,17 @@
-import type { Metadata, ResolvingMetadata } from "next";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import fs from "fs";
-import path from "path";
+import { getPost } from "@/lib/posts";
+import { notFound } from "next/navigation";
 
 type Props = {
   params: Promise<{ slug: string }>;
 };
 
-const titles: { [key: string]: string } = {
-  first: "First Blog",
-  second: "Second Blog",
-};
-
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  const slug = (await params).slug;
-  const description = (await parent).description ?? "Description Blog";
-
-  return {
-    title: titles[slug] || "Blog Post",
-    description: description,
-  };
+export async function generateMetadata({ params }: Props) {
+  try {
+    const { frontmatter } = await getPost((await params).slug);
+    return frontmatter;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export default async function BlogPage({
@@ -32,13 +21,14 @@ export default async function BlogPage({
 }) {
   const slug = (await params).slug;
 
-  const markdown = fs.readFileSync(
-    path.join(process.cwd(), "src", "content", `${slug}.mdx`)
-  );
+  let post;
 
-  return (
-    <article className="prose dark:prose-invert">
-      <MDXRemote source={markdown} />
-    </article>
-  );
+  try {
+    post = await getPost(slug);
+  } catch (error) {
+    console.log(error);
+    notFound();
+  }
+
+  return <article className="prose dark:prose-invert">{post.content}</article>;
 }
