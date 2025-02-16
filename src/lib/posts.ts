@@ -2,13 +2,21 @@ import fs from "fs";
 import path from "path";
 import { compileMDX } from "next-mdx-remote/rsc";
 
-export function loadPost(slug: string) {
-  return fs.readFileSync(
-    path.join(process.cwd(), "src", "content", `${slug}.mdx`)
-  );
+interface Frontmatter {
+  title: string;
+  description: string;
+  date: string;
 }
 
-export async function getPost(slug: string) {
+export function loadPost(slug: string) {
+  const fileName = slug.endsWith(".mdx") ? slug : `${slug}.mdx`;
+
+  return fs.readFileSync(path.join(process.cwd(), "src", "content", fileName));
+}
+
+export async function getPost(
+  slug: string
+): Promise<{ frontmatter: Frontmatter }> {
   const source = loadPost(slug);
 
   return await compileMDX({
