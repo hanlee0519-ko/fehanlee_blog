@@ -1,8 +1,16 @@
 import Link from "next/link";
 import { getPosts } from "@/lib/posts";
 
-export default async function BlogPostsPage() {
+type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
+
+export default async function BlogPostsPage(props: {
+  searchParams: SearchParams;
+}) {
   const posts = await getPosts();
+  const searchParams = await props.searchParams;
+  const tags = (searchParams.tags as string)?.split(",");
+
+  console.log("tags", tags);
 
   return (
     <article>

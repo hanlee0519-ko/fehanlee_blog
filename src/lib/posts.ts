@@ -6,6 +6,7 @@ interface Frontmatter {
   title: string;
   description: string;
   date: string;
+  tags: string[];
 }
 
 export function loadPost(slug: string) {
@@ -25,14 +26,29 @@ export async function getPost(
   });
 }
 
-export async function getPosts() {
+export async function getPosts({
+  sortByData = false,
+  page = 1,
+  limit = 10,
+  tags = [],
+} = {}) {
   const files = fs.readdirSync(path.join(process.cwd(), "src", "content"));
 
-  return await Promise.all(
+  const posts = await Promise.all(
     files.map(async (fileName) => {
       const { frontmatter } = await getPost(fileName);
 
       return { frontmatter, slug: fileName.replace(".mdx", "") };
     })
   );
+
+  let filteredPosts = posts;
+
+  if (tags) {
+    filteredPosts = filteredPosts.filter((post) =>
+      post.frontmatter.tags.some((tag) => post.frontmatter.tags.includes(tag))
+    );
+  }
+
+  return filteredPosts;
 }
