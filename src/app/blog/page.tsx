@@ -1,18 +1,8 @@
-import fs from "fs";
-import path from "path";
 import Link from "next/link";
-import { getPost } from "@/lib/posts";
+import { getPosts } from "@/lib/posts";
 
 export default async function BlogPostsPage() {
-  const files = fs.readdirSync(path.join(process.cwd(), "src", "content"));
-
-  const posts = await Promise.all(
-    files.map(async (fileName) => {
-      const { frontmatter } = await getPost(fileName);
-
-      return { frontmatter, slug: fileName.replace(".mdx", "") };
-    })
-  );
+  const posts = await getPosts();
 
   return (
     <article>

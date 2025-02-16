@@ -24,3 +24,15 @@ export async function getPost(
     options: { parseFrontmatter: true },
   });
 }
+
+export async function getPosts() {
+  const files = fs.readdirSync(path.join(process.cwd(), "src", "content"));
+
+  return await Promise.all(
+    files.map(async (fileName) => {
+      const { frontmatter } = await getPost(fileName);
+
+      return { frontmatter, slug: fileName.replace(".mdx", "") };
+    })
+  );
+}
