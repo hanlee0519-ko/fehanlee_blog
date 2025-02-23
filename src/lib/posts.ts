@@ -17,7 +17,7 @@ export function loadPost(slug: string) {
 
 export async function getPost(
   slug: string
-): Promise<{ frontmatter: Frontmatter }> {
+): Promise<{ frontmatter: Frontmatter; content: React.ReactNode }> {
   const source = loadPost(slug);
 
   return await compileMDX({
