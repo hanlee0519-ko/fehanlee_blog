@@ -6,9 +6,9 @@ type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
 export default async function BlogPostsPage(props: {
   searchParams: SearchParams;
 }) {
-  const posts = await getPosts();
   const searchParams = await props.searchParams;
   const tags = (searchParams.tags as string)?.split(",");
+  const posts = await getPosts({ tags });
 
   console.log("tags", tags);
 

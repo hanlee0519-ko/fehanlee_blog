@@ -30,7 +30,7 @@ export async function getPosts({
   sortByData = false,
   page = 1,
   limit = 10,
-  tags = [],
+  tags = [] as string[] | undefined,
 } = {}) {
   const files = fs.readdirSync(path.join(process.cwd(), "src", "content"));
 
@@ -44,9 +44,9 @@ export async function getPosts({
 
   let filteredPosts = posts;
 
-  if (tags) {
+  if (!tags === undefined) {
     filteredPosts = filteredPosts.filter((post) =>
-      post.frontmatter.tags.some((tag) => post.frontmatter.tags.includes(tag))
+      post.frontmatter.tags.some((tag) => tags.includes(tag))
     );
   }
 
