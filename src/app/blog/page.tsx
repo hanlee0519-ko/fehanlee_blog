@@ -16,7 +16,7 @@ export default async function BlogPostsPage(props: {
 
   return (
     <article>
-      <h1 className="mb-8 text-xl">Recent Posts</h1>
+      <h1 className="mb-4 text-2xl">Page: Blog</h1>
       <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">
         Stay up to date with most recent posts
       </p>

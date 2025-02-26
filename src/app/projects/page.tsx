@@ -1,10 +1,18 @@
 import Card from "@/components/card";
-import { RepoData } from "@/types/repo";
 import { Suspense } from "react";
+
+type RepoData = {
+  id: number;
+  name: string;
+  description: string;
+  stargazers_count: number;
+};
 
 async function getRepos() {
   try {
-    const response = await fetch("http://localhost:3001/repos");
+    const response = await fetch(
+      "https://api.github.com/users/piotr-jura-udemy/repos"
+    );
     if (!response.ok) throw new Error();
 
     const data = await response.json();
@@ -28,7 +36,7 @@ async function ProjectList() {
         <li key={repo.id} className="mb-4">
           <Card className="font-mono h-full">
             <header className="flex justify-between items-center mb-4">
-              <h3 className="font-semibold">{repo.title}</h3>
+              <h3 className="font-semibold">{repo.name}</h3>
               <span>⭐️{repo.stargazers_count}</span>
             </header>
 

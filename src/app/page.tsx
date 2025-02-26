@@ -1,7 +1,8 @@
 export default function Home() {
   return (
-    <article className="border-4 border-black">
-      <h1>Page: Home</h1>
+    <article>
+      <h1 className="mb-4 text-2xl">Page: Home</h1>
+      <p>Welcome to my Page 😁</p>
     </article>
   );
 }

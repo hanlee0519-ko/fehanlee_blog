@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function PhotosPage() {
   return (
     <article>
-      <h1 className="text-2xl mb-8 font-semibold">My Photos</h1>
+      <h1 className="mb-4 text-2xl">Page: Photos</h1>
 
       <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <li className="relative h-60 overflow-hidden">
