@@ -28,8 +28,6 @@ export async function getPost(
 
 export async function getPosts({
   newest = true,
-  page = 1,
-  limit = 10,
   tags = [] as string[] | undefined,
 } = {}) {
   const files = fs.readdirSync(path.join(process.cwd(), "src", "content"));

@@ -8,9 +8,11 @@ export default async function BlogPostsPage(props: {
 }) {
   const searchParams = await props.searchParams;
   const tags = (searchParams.tags as string)?.split(",");
-  const posts = await getPosts({ tags });
+  const order = searchParams.order ?? "newest";
+  const posts = await getPosts({ tags: tags, newest: order === "newest" });
 
   console.log("tags", tags);
+  console.log("order", order);
 
   return (
     <article>
@@ -20,6 +22,20 @@ export default async function BlogPostsPage(props: {
       </p>
 
       <hr />
+
+      <article className="mb-8">
+        Display&nbsp;
+        {order === "newest" && (
+          <Link href="/blog?order=oldest" className="underline">
+            Oldest
+          </Link>
+        )}
+        {order === "oldest" && (
+          <Link href="/blog?order=newest" className="underline">
+            Newest
+          </Link>
+        )}
+      </article>
 
       <ul className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {posts.map((post) => (
