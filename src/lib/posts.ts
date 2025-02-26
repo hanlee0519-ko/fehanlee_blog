@@ -27,7 +27,7 @@ export async function getPost(
 }
 
 export async function getPosts({
-  sortByData = false,
+  newest = true,
   page = 1,
   limit = 10,
   tags = [] as string[] | undefined,
@@ -44,11 +44,26 @@ export async function getPosts({
 
   let filteredPosts = posts;
 
-  if (!tags === undefined) {
+  if (tags && tags.length > 0) {
     filteredPosts = filteredPosts.filter((post) =>
       post.frontmatter.tags.some((tag) => tags.includes(tag))
     );
   }
 
+  if (newest) {
+    filteredPosts.sort((a, b) => {
+      const dateA = new Date(a.frontmatter.date);
+      const dateB = new Date(b.frontmatter.date);
+
+      return dateB.getTime() - dateA.getTime();
+    });
+  } else {
+    filteredPosts.sort((a, b) => {
+      const dateA = new Date(a.frontmatter.date);
+      const dateB = new Date(b.frontmatter.date);
+
+      return dateA.getTime() - dateB.getTime();
+    });
+  }
   return filteredPosts;
 }
