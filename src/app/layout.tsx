@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
+import getServerTheme from "@/hooks/use-server-dark-mode";
 
 const roboto = Roboto({
   weight: ["400", "700"],
@@ -17,13 +18,14 @@ export const metadata: Metadata = {
   description: "HAN's Portfolio",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const theme = await getServerTheme();
   return (
-    <html lang="en">
+    <html lang="en" className={theme}>
       <body className={roboto.className}>
         <Header />
         <main className="mt-12">{children}</main>

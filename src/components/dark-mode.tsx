@@ -7,8 +7,12 @@ const MODE_ICONS = {
   light: "🌞",
 };
 
-export default function DarkMode() {
-  const { theme, toggleTheme } = useDarkMode();
+export default function DarkMode({ defaultTheme }: { defaultTheme: string }) {
+  const { theme, toggleTheme } = useDarkMode(defaultTheme);
 
-  return <button onClick={toggleTheme}>{MODE_ICONS[theme]}</button>;
+  return (
+    <button onClick={toggleTheme}>
+      {MODE_ICONS[theme as keyof typeof MODE_ICONS]}
+    </button>
+  );
 }
