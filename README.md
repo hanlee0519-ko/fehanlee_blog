@@ -1,3 +1,3 @@
 # 데모
 
-[링크](https://why-know-blog.vercel.app/)
+[링크](https://www.fehanlee.com)
