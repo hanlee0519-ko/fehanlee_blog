@@ -1,8 +1,7 @@
 export default function Home() {
   return (
     <article>
-      <h1 className="mb-4 text-2xl">Page: Home</h1>
-      <p>Welcome to my Page 😁</p>
+      <h1 className="text-lg">{"안녕하세요, 이경한 입니다."}</h1>
     </article>
   );
 }
