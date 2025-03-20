@@ -6,7 +6,7 @@ export default function Navigation() {
     <nav className="font-mono">
       <ul className="flex flex-col md:flex-row md:space-x-4">
         <li className={styles.link}>
-          <Link href="/blogs">blog</Link>
+          <Link href="/blog">blog</Link>
         </li>
         <li className={styles.link}>
           <Link href="/resume">resume</Link>

@@ -13,7 +13,7 @@ const useDarkMode = (defaultTheme: string) => {
   };
 
   const toggleTheme = () => {
-    setAndSaveTheme(theme === "dark" ? "light" : "dark");
+    setAndSaveTheme(theme === "light" ? "dark" : "light");
   };
 
   return { theme, toggleTheme };
