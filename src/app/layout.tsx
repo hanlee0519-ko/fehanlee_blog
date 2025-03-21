@@ -12,9 +12,6 @@ const notoSansKR = Noto_Sans_KR({
 export const metadata: Metadata = {
   title: "HAN's Blog",
   description: "HAN's Portfolio",
-  icons: {
-    icon: "./icon.ico",
-  },
 };
 
 export default async function RootLayout({
@@ -25,6 +22,7 @@ export default async function RootLayout({
   const theme = await getServerTheme();
   return (
     <html lang="ko" className={theme}>
+      <link rel="icon" href="./icon/ico" sizes="any" />
       <body className={notoSansKR.className}>
         <Header />
         <main className="mt-12">{children}</main>
