@@ -22,7 +22,7 @@ export default async function RootLayout({
   const theme = await getServerTheme();
   return (
     <html lang="ko" className={theme}>
-      <link rel="icon" href="./icon/ico" sizes="any" />
+      <link rel="icon" href="./icon.ico" sizes="any" />
       <body className={notoSansKR.className}>
         <Header />
         <main className="mt-12">{children}</main>
