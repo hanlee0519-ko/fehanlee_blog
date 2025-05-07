@@ -1,37 +1,44 @@
 "use client";
 
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useReducer, useEffect } from "react";
+import type { ThemeState, ThemeAction } from "@/types/theme-context-type";
 
-export type ThemeContextType = {
-  theme: string;
-  toggleTheme: () => void;
-};
-
-const DEFAULT_THEME: ThemeContextType = {
-  theme: "light",
-  toggleTheme: () => {},
-};
-
-export const ThemeContext = createContext<ThemeContextType>(DEFAULT_THEME);
+export const ThemeStateContext = createContext<ThemeState | undefined>(
+  undefined
+);
+export const ThemeDispatchContext = createContext<
+  React.Dispatch<ThemeAction> | undefined
+>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<string>("light");
+  const [state, dispatch] = useReducer(themeReducer, INITIAL_STATE);
 
   useEffect(() => {
     document.documentElement.classList.remove("dark", "light");
-    document.documentElement.classList.add(theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    document.documentElement.classList.remove("dark", "light");
-    document.documentElement.classList.add(newTheme);
-  };
+    document.documentElement.classList.add(state.theme);
+  }, [state.theme]);
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      {children}
-    </ThemeContext.Provider>
+    <ThemeStateContext.Provider value={state}>
+      <ThemeDispatchContext.Provider value={dispatch}>
+        {children}
+      </ThemeDispatchContext.Provider>
+    </ThemeStateContext.Provider>
   );
 }
+
+function themeReducer(state: ThemeState, action: ThemeAction): ThemeState {
+  switch (action.type) {
+    case "TOGGLE_THEME":
+      return {
+        ...state,
+        theme: state.theme === "light" ? "dark" : "light",
+      };
+    default:
+      return state;
+  }
+}
+
+const INITIAL_STATE: ThemeState = {
+  theme: "light",
+};

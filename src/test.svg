@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="700" height="420" viewBox="0 0 700 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="700" height="420" fill="#f9fafb"/>
+  <!-- ThemeProvider -->
+  <rect x="40" y="40" width="180" height="60" rx="12" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+  <text x="130" y="70" text-anchor="middle" font-size="18" fill="#3730a3" font-family="sans-serif">ThemeProvider</text>
+  <text x="130" y="90" text-anchor="middle" font-size="12" fill="#6366f1" font-family="sans-serif">theme, toggleTheme</text>
+
+  <!-- Arrow to Provider -->
+  <line x1="130" y1="100" x2="130" y2="140" stroke="#6366f1" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- ThemeContext.Provider -->
+  <rect x="40" y="140" width="180" height="60" rx="12" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+  <text x="130" y="170" text-anchor="middle" font-size="16" fill="#065f46" font-family="sans-serif">ThemeContext.Provider</text>
+  <text x="130" y="190" text-anchor="middle" font-size="12" fill="#10b981" font-family="sans-serif">value: {theme, toggleTheme}</text>
+
+  <!-- Arrow to Children -->
+  <line x1="130" y1="200" x2="130" y2="240" stroke="#10b981" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 자식 컴포넌트들 -->
+  <rect x="40" y="240" width="180" height="60" rx="12" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+  <text x="130" y="270" text-anchor="middle" font-size="16" fill="#991b1b" font-family="sans-serif">자식 컴포넌트들</text>
+  <text x="130" y="290" text-anchor="middle" font-size="12" fill="#ef4444" font-family="sans-serif">useContext(ThemeContext)</text>
+
+  <!-- Toggle Theme Button -->
+  <rect x="270" y="250" width="160" height="40" rx="8" fill="#fef9c3" stroke="#f59e42" stroke-width="2"/>
+  <text x="350" y="275" text-anchor="middle" font-size="14" fill="#b45309" font-family="sans-serif">toggleTheme() 호출</text>
+
+  <!-- Arrow from 자식 to ThemeProvider -->
+  <path d="M220 270 Q245 270 270 270" stroke="#f59e42" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+  <path d="M430 270 Q600 270 600 100 Q130 100 130 100" stroke="#a3a3a3" stroke-width="1.5" fill="none" stroke-dasharray="6 4"/>
+  <text x="610" y="110" font-size="12" fill="#6b7280" font-family="sans-serif">theme 상태 변경</text>
+  <text x="610" y="130" font-size="12" fill="#6b7280" font-family="sans-serif">document.documentElement.classList 변경</text>
+
+  <!-- HTML class 적용 -->
+  <rect x="500" y="40" width="160" height="60" rx="12" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+  <text x="580" y="70" text-anchor="middle" font-size="16" fill="#3730a3" font-family="sans-serif">&lt;html class="light"/&gt;</text>
+  <text x="580" y="90" text-anchor="middle" font-size="12" fill="#6366f1" font-family="sans-serif">or "dark"</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 L3,5 Z" fill="#6366f1" />
+    </marker>
+  </defs>
+</svg>
